@@ -3,7 +3,7 @@ pipeline {
         dockerfile true
     }
     stages {
-        stage('Test') {
+        stage('Build') {
             steps {
                 sh 'uname -a'
             }
