@@ -1,10 +1,10 @@
 FROM centos
 MAINTAINER “Lee Pierce" <lee.pierce@aa.com>
-run yum -y update
-run yum -y install openssh-clients 
-run yum -y install postfix 
-run yum -y install telnet 
-run yum -y install mailx
+#run yum -y update
+#run yum -y install openssh-clients 
+#run yum -y install postfix 
+#run yum -y install telnet 
+#run yum -y install mailx
 run yum -y install wget
 RUN chmod 777 /opt; \
     groupadd tomcat; useradd --home-dir /opt/tomcat --create-home --shell /bin/bash -g tomcat  -p Tomcat123 tomcat; 
