@@ -5,7 +5,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                script { docker.build = dog:1 }
+                script { docker.build = dog}
             }
         }
     }
