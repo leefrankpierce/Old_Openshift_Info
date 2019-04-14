@@ -5,7 +5,10 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                  sh 'uname -a'
+                script {
+                    image = docker.build("${IMAGE}")
+                    println "Newly generated image, " + image.id
+                }
             }
         }
     }
