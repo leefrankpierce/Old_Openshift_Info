@@ -5,7 +5,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'uname -a'
+                script { docker.build = dog:1 }
             }
         }
     }
