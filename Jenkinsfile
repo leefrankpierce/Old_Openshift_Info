@@ -4,9 +4,12 @@ pipeline {
     ansiColor colorMapName: 'XTerm'
   }
   stages {
+    stage('checkout') {
+      checkout scm
+    }
     stage('Build') {
       steps {
-        sh "docker build -t https://github.com/leefrankpierce/leedogs:${GIT_SHA} ."
+        sh "docker build -t leedogs:${GIT_SHA} ."
       }
     }
     stage('Publish') {
@@ -14,7 +17,6 @@ pipeline {
         branch 'master'
       }
       steps {
-#        withDockerRegistry([credentialsId: 'registry-creds', url: 'https://registry.yourcompany.com']) {
           sh "docker push leefrankpierce/leedogs:${GIT_SHA}"
         }
       }
