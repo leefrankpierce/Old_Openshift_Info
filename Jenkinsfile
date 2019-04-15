@@ -8,13 +8,13 @@ pipeline {
     }
     stage('Build') {
       steps {
-        sh "docker build -t leedogs ."
+        sh "docker build -t leefrankpierce/leedogs ."
       }
     }
     stage('Publish') {
       steps {
           sh "docker login -u leefrankpierce -p leefrankpierce"
-          sh "docker image push leedogs"
+          sh "docker image push leefrankpierce/leedogs"
         }
       }
     }
