@@ -13,7 +13,7 @@ pipeline {
     }
     stage('Publish') {
       steps {
-          sh "docker push leefrankpierce/leedogs"
+          sh "docker push leedogs"
         }
       }
     }
