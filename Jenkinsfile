@@ -1,14 +1,24 @@
 pipeline {
-    agent {
-        dockerfile true
+  agent { label 'docker' }
+  options {
+    ansiColor colorMapName: 'XTerm'
+  }
+  stages {
+    stage('Build') {
+      steps {
+        sh "docker build -t https://github.com/leefrankpierce/leedogs:${GIT_SHA} ."
+      }
     }
-    stages {
-        stage('Build') {
-            steps {
-                script {
-                sh 'uname -a'
-                }
-            }
+    stage('Publish') {
+      when {
+        branch 'master'
+      }
+      steps {
+#        withDockerRegistry([credentialsId: 'registry-creds', url: 'https://registry.yourcompany.com']) {
+          sh "docker push leefrankpierce/leedogs:${GIT_SHA}"
         }
+      }
     }
+  }
 }
+
