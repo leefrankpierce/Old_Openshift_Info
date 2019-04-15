@@ -8,7 +8,7 @@ pipeline {
     }
     stage('Build') {
       steps {
-        sh "docker build -t leedogs:${GIT_SHA} ."
+        sh "docker build -t leedogs ."
       }
     }
     stage('Publish') {
@@ -16,7 +16,7 @@ pipeline {
         branch 'master'
       }
       steps {
-          sh "docker push leefrankpierce/leedogs:${GIT_SHA}"
+          sh "docker push leefrankpierce/leedogs"
         }
       }
     }
