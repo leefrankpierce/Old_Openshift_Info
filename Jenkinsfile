@@ -1,8 +1,5 @@
 pipeline {
   agent { label 'docker' }
-  options {
-    ansiColor colorMapName: 'XTerm'
-  }
   stages {
     stage('checkout') {
       steps {
