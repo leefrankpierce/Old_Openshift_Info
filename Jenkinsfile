@@ -12,9 +12,6 @@ pipeline {
       }
     }
     stage('Publish') {
-      when {
-        branch 'master'
-      }
       steps {
           sh "docker push leefrankpierce/leedogs"
         }
