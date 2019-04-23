@@ -1,6 +1,6 @@
-node {
-    def app
-    agent { label 'docker' }
+node ('docker') {
+    def app 
+   
     stage('Clone repository') {
         /* Cloning the Repository to our Workspace */
 
