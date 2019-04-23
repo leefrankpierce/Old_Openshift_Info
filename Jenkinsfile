@@ -16,8 +16,8 @@ pipeline {
           sh "docker login -u leefrankpierce -p leefrankpierce"
           sh "docker image push leefrankpierce/leedogs"
         }
-      } */
-    }
+      } 
+    } */
 }
 
 
