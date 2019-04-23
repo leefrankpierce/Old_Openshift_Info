@@ -1,6 +1,6 @@
 node ('docker') {
     def app 
-   
+   /* the "docker" above notes the build server I have configured from inside Jenkins */
     stage('Clone repository') {
         /* Cloning the Repository to our Workspace */
 
