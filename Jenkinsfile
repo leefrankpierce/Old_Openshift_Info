@@ -7,16 +7,16 @@ pipeline {
       }
     }
     stage('Build') {
-      steps {
-        sh "docker build -t leefrankpierce/leedogs ."
-      }
+      
+        app = docker.build("leefrankpierce/leedogs")
+      
     }
-    stage('Publish') {
+    /*stage('Publish') {
       steps {
           sh "docker login -u leefrankpierce -p leefrankpierce"
           sh "docker image push leefrankpierce/leedogs"
         }
-      }
+      } */
     }
 }
 
