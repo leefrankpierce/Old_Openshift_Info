@@ -10,8 +10,9 @@ node ('docker') {
     stage('Build image') {
         /* This builds the actual image */
 
-
+	docker.withRegistry('https://registry.hub.docker.com', 'lee dockerhub') {	
         app = docker.build("leefrankpierce/leedogs")
+	}
       }
 
     stage('Test image') {
