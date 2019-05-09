@@ -1,0 +1,56 @@
+################## How to build a Basic Openshift Application in the AA Openshift LAB
+# NOTE: this file complements a video I have put on the rpt sharepoint
+# contact lee.pierce@aa.com for the video.
+git https://ghe.aa.com/00641016/leedog.git
+
+cd /home/lee/Desktop/docker_training_files/lee_dog_app_centos_ojdk11_tomcat/webapp
+ls -latr
+drwxr-xr-x 2 lee lee      4096 Oct  4 15:02 webapp
+-rwxr-xr-x 1 lee lee   42817 Oct  4 15:02 Question_mark.png
+-rwxr-xr-x 1 lee lee    2554 Oct  4 15:02 pic_bulbon.gif
+-rwxr-xr-x 1 lee lee    2493 Oct  4 15:02 pic_bulboff.gif
+-rwxr-xr-x 1 lee lee     240 Oct  4 15:02 oldindex.html
+-rwxr-xr-x 1 lee lee     844 Oct  4 15:02 index.html
+-rwxr-xr-x 1 lee lee      15 Oct  4 15:02 ajax_info.txt
+-rwxr-xr-x 1 lee lee     844 Oct  4 15:02 ajax.html
+-rwxr-xr-x 1 lee lee 3032303 Oct  4 15:02 Abe.jpg
+drwxr-xr-x 2 lee lee    4096 Oct  4 15:02 .
+-rwxr-xr-x 1 lee lee  965187 Dec 31 11:28 Johnny.jpg
+
+cd /home/lee/Desktop/docker_training_files/lee_dog_app_centos_ojdk11_tomcat
+ls -latr
+-rw-rw-r-- 1 lee lee  14694400 Dec 31 15:27 apache-tomcat-9.0.12.tar
+-rw-r--r-- 1 lee lee       743 Dec 31 12:12 Dockerfile
+-rw-rw-r-- 1 lee lee      1366 Dec 31 15:22 How_to_buld_docker_openshift.txt
+-rw-rw-r-- 1 lee lee      1184 Dec 31 13:02 lee_app_deploy.yaml
+-rw-rw-r-- 1 lee lee 310589440 Dec 31 15:27 openjdk-11.0.1_linux-x64_bin.tar
+
+
+uname -a
+sudo docker -v
+sudo cat /etc/docker/daemon.json
+pwd
+cat Dockerfile
+cd /home/lee/Desktop/docker_training_files/lee_dog_app_centos_ojdk11_tomcat/webapp
+sudo docker image ls
+sudo docker pull centos
+head Docker
+sudo docker image tag centos centos7.5
+sudo docker image ls
+sudo docker build -rm -t lee_dog_centos7_ojdk11_tomcat9.v1.0 .
+sudo docker image tag lee_dog_centos7_ojdk11_tomcat9.v1.0 dtr.qcorpaa.aa.com/rpt_infra/leedog
+#web login to DTR and create repo rpt_infra/leedog
+sudo docker image push dtr.qcorpaa.aa.com/rpt_infra/leedog
+oc login rmocpmaster.qcorpaa.aa.com
+oc new-project lee-dogs --display-name="Lee's Dogs"
+oc get projects
+oc project lee-dogs
+cat lee_app_deploy.yaml
+oc create -f lee_app_deploy.yaml
+oc get pods -o wide
+oc create service clusterip leedogapp --tcp=443:8080
+oc create route edge leedogroute --service=leedogapp --port=443-8080 --hostname='leedog.rmocp.qcorpaa.aa.com'
+nslookup *.rmocp.qcorpaa.aa.com
+nslookup leedog.rmocp.qcorpaa.aa.com
+oc delete all --selector app=lee-dogs
+sudo docker system prune --all

@@ -1,0 +1,3 @@
+{
+"insecure-registries": ["docker-registry-default.rptcdcprod01.aa.com","docker-registry-default.rptpdcprod01.aa.com","docker-registry-default.rmocp.qcorpaa.aa.com","registry.access.redhat.com","dtr.qcorpaa.aa.com","dtr.cdc.aa.com","dtr.pdc.aa.com"]
+}
