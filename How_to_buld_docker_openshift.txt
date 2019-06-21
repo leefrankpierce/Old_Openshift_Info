@@ -33,11 +33,11 @@ pwd
 cat Dockerfile
 cd /home/lee/Desktop/docker_training_files/lee_dog_app_centos_ojdk11_tomcat/webapp
 sudo docker image ls
-sudo docker pull centos
-head Docker
-sudo docker image tag centos centos7.5
+#sudo docker pull centos
+#head Docker
+#sudo docker image tag centos centos7.5
 sudo docker image ls
-sudo docker build -rm -t lee_dog_centos7_ojdk11_tomcat9.v1.0 .
+sudo docker build --rm -t lee_dog_centos7_ojdk11_tomcat9.v1.0 .
 sudo docker image tag lee_dog_centos7_ojdk11_tomcat9.v1.0 dtr.qcorpaa.aa.com/rpt_infra/leedog
 #web login to DTR and create repo rpt_infra/leedog
 sudo docker image push dtr.qcorpaa.aa.com/rpt_infra/leedog
